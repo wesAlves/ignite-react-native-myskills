@@ -8,6 +8,7 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
+import {MyButton} from '../components/Button';
 
 export const Home = () => {
   const [newSkill, setNewSkill] = useState('');
@@ -18,6 +19,7 @@ export const Home = () => {
     const skill = newSkill;
 
     setMySkills([...mySkills, skill]);
+    setNewSkill('');
   };
 
   return (
@@ -31,12 +33,14 @@ export const Home = () => {
         onChangeText={setNewSkill}
       />
 
-      <TouchableOpacity
+      <MyButton name="Add new" addSkillHandle={addSkillHandle} />
+
+      {/* <TouchableOpacity
         style={styles.button}
         activeOpacity={0.7}
         onPress={addSkillHandle}>
         <Text style={styles.buttonText}>Add new</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <Text style={[styles.title, {marginTop: 50}]}>My skills</Text>
       {mySkills.map(skill => {
@@ -70,18 +74,5 @@ const styles = StyleSheet.create({
     marginTop: 30,
     borderRadius: 8,
     width: '100%',
-  },
-  button: {
-    backgroundColor: '#A370f7',
-    padding: 15,
-    borderRadius: 7,
-    alignItems: 'center',
-    width: '100%',
-    marginTop: 20,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: 'bold',
   },
 });
