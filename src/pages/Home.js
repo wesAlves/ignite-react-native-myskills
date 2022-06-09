@@ -40,7 +40,11 @@ export const Home = () => {
 
       <Text style={[styles.title, {marginTop: 50}]}>My skills</Text>
       {mySkills.map(skill => {
-        return <Text style={[styles.title, {marginTop: 50}]}>{skill}</Text>;
+        return (
+          <Text key={skill} style={[styles.title, {marginTop: 50}]}>
+            {skill}
+          </Text>
+        );
       })}
     </SafeAreaView>
   );
