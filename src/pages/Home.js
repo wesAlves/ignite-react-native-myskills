@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,18 +10,38 @@ import {
 } from 'react-native';
 
 export const Home = () => {
+  const [newSkill, setNewSkill] = useState('');
+
+  const [mySkills, setMySkills] = useState(['queijo']);
+
+  const addSkillHandle = () => {
+    const skill = newSkill;
+
+    setMySkills([...mySkills, skill]);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Welcome</Text>
+
       <TextInput
         style={styles.input}
         placeholder="New Skill"
         placeholderTextColor="#555"
+        onChangeText={setNewSkill}
       />
-      <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.7}
+        onPress={addSkillHandle}>
         <Text style={styles.buttonText}>Add new</Text>
       </TouchableOpacity>
-      <Text style={[styles.title, {marginTop: 50}]}>My Skills</Text>
+
+      <Text style={[styles.title, {marginTop: 50}]}>My skills</Text>
+      {mySkills.map(skill => {
+        return <Text style={[styles.title, {marginTop: 50}]}>{skill}</Text>;
+      })}
     </SafeAreaView>
   );
 };
