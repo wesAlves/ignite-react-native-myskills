@@ -6,13 +6,14 @@ import {
   TextInput,
   Platform,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import {MyButton} from '../components/Button';
 import {SkillCard} from '../components/SkillCard';
 
 export const Home = () => {
   const [newSkill, setNewSkill] = useState('');
-  const [mySkills, setMySkills] = useState(['queijo']);
+  const [mySkills, setMySkills] = useState(['Queijo']);
 
   const addSkillHandle = () => {
     setMySkills(oldState => [...oldState, newSkill]);
@@ -24,6 +25,8 @@ export const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
+
       <Text style={styles.title}>Welcome</Text>
 
       <TextInput
