@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
-  View,
   Text,
   StyleSheet,
   SafeAreaView,
   TextInput,
   Platform,
-  TouchableOpacity,
   FlatList,
 } from 'react-native';
 import {MyButton} from '../components/Button';
@@ -14,15 +12,15 @@ import {SkillCard} from '../components/SkillCard';
 
 export const Home = () => {
   const [newSkill, setNewSkill] = useState('');
-
   const [mySkills, setMySkills] = useState(['queijo']);
 
   const addSkillHandle = () => {
-    const skill = newSkill;
-
-    setMySkills([...mySkills, skill]);
-    setNewSkill('');
+    setMySkills(oldState => [...oldState, newSkill]);
   };
+
+  useEffect(() => {
+    setNewSkill('');
+  }, [mySkills]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,14 +31,12 @@ export const Home = () => {
         placeholder="New Skill"
         placeholderTextColor="#555"
         onChangeText={setNewSkill}
+        value={newSkill}
       />
 
       <MyButton name="Add new" onPress={addSkillHandle} />
 
       <Text style={[styles.title, {marginTop: 50}]}>My skills</Text>
-      {/* {mySkills.map(skill => {
-        return <SkillCard skill={skill} key={skill} />;
-      })} */}
 
       <FlatList
         data={mySkills}
