@@ -29,12 +29,12 @@ export const Home = () => {
   };
 
   const removeSkillHandle = (id: string) => {
-    const skillIndexOf = mySkills.findIndex(item => item.id === id);
+    // const skillIndexOf = mySkills.findIndex(item => item.id === id);
 
-    const updateSkills = mySkills;
-    updateSkills.splice(skillIndexOf, 1);
+    // const updateSkills = mySkills;
+    // updateSkills.splice(skillIndexOf, 1);
 
-    setMySkills(updateSkills);
+    setMySkills(oldState => oldState.filter(skill => skill.id !== id));
   };
 
   useEffect(() => {
