@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {MyButton} from '../components/Button';
+import {SkillCard} from '../components/SkillCard';
 
 export const Home = () => {
   const [newSkill, setNewSkill] = useState('');
@@ -35,20 +36,9 @@ export const Home = () => {
 
       <MyButton name="Add new" addSkillHandle={addSkillHandle} />
 
-      {/* <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.7}
-        onPress={addSkillHandle}>
-        <Text style={styles.buttonText}>Add new</Text>
-      </TouchableOpacity> */}
-
       <Text style={[styles.title, {marginTop: 50}]}>My skills</Text>
       {mySkills.map(skill => {
-        return (
-          <Text key={skill} style={[styles.title, {marginTop: 50}]}>
-            {skill}
-          </Text>
-        );
+        return <SkillCard skill={skill} key={skill} />;
       })}
     </SafeAreaView>
   );
