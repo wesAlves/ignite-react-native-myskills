@@ -6,7 +6,7 @@ export const MyButton = props => {
     <TouchableOpacity
       style={styles.button}
       activeOpacity={0.7}
-      onPress={props.addSkillHandle}>
+      onPress={props.onPress}>
       <Text style={styles.buttonText}>{props.name}</Text>
     </TouchableOpacity>
   );

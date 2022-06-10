@@ -3,8 +3,8 @@ import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 export const SkillCard = props => {
   return (
-    <TouchableOpacity>
-      <Text style={[styles.title, {marginTop: 50}]}>{props.skill}</Text>
+    <TouchableOpacity style={styles.buttonSkill}>
+      <Text style={styles.textSkill}>{props.skill}</Text>
     </TouchableOpacity>
   );
 };
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 50,
     alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 10,
   },
   textSkill: {color: '#fff', fontSize: 22, fontWeight: 'bold'},

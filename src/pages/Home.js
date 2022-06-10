@@ -34,7 +34,7 @@ export const Home = () => {
         onChangeText={setNewSkill}
       />
 
-      <MyButton name="Add new" addSkillHandle={addSkillHandle} />
+      <MyButton name="Add new" onPress={addSkillHandle} />
 
       <Text style={[styles.title, {marginTop: 50}]}>My skills</Text>
       {mySkills.map(skill => {
