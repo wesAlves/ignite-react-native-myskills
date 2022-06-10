@@ -28,6 +28,15 @@ export const Home = () => {
     setMySkills(oldState => [...oldState, data]);
   };
 
+  const removeSkillHandle = (id: string) => {
+    // const skillIndexOf = mySkills.findIndex(item => item.id === id);
+
+    // const updateSkills = mySkills;
+    // updateSkills.splice(skillIndexOf, 1);
+
+    setMySkills(oldState => oldState.filter(skill => skill.id !== id));
+  };
+
   useEffect(() => {
     setNewSkill('');
   }, [mySkills]);
@@ -53,7 +62,14 @@ export const Home = () => {
       <FlatList
         data={mySkills}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <SkillCard skill={item.name} />}
+        renderItem={({item}) => (
+          <SkillCard skill={item.name}>
+            <MyButton
+              name="Remove skill"
+              onPress={() => removeSkillHandle(item.id)}
+            />
+          </SkillCard>
+        )}
       />
     </SafeAreaView>
   );
