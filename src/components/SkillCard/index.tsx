@@ -1,7 +1,12 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-export const SkillCard = ({skill}) => {
+interface SkillPorps {
+  id?: string;
+  skill: string;
+}
+
+export const SkillCard = ({skill, id}: SkillPorps) => {
   return (
     <TouchableOpacity style={styles.buttonSkill}>
       <Text style={styles.textSkill}>{skill}</Text>
