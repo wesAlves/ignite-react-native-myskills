@@ -28,6 +28,11 @@ export const Home = () => {
     setMySkills(oldState => [...oldState, data]);
   };
 
+  const removeSkillHandle = (id: string) => {
+    const skill = mySkills.find(item => item.id === id);
+    console.log(skill);
+  };
+
   useEffect(() => {
     setNewSkill('');
   }, [mySkills]);
@@ -53,7 +58,14 @@ export const Home = () => {
       <FlatList
         data={mySkills}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <SkillCard skill={item.name} />}
+        renderItem={({item}) => (
+          <SkillCard skill={item.name}>
+            <MyButton
+              name="Remove skill"
+              onPress={() => removeSkillHandle(item.id)}
+            />
+          </SkillCard>
+        )}
       />
     </SafeAreaView>
   );

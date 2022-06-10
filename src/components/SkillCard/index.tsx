@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 interface SkillPorps {
   id?: string;
   skill: string;
+  children?: ReactNode;
 }
 
-export const SkillCard = ({skill, id}: SkillPorps) => {
+export const SkillCard = ({skill, children}: SkillPorps) => {
   return (
     <TouchableOpacity style={styles.buttonSkill}>
       <Text style={styles.textSkill}>{skill}</Text>
+      {children}
     </TouchableOpacity>
   );
 };
