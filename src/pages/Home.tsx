@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: 24,
-    fintWeight: 'bold',
+    fontWeight: 'bold',
   },
   input: {
     backgroundColor: '#1f1e25',
