@@ -11,12 +11,21 @@ import {
 import {MyButton} from '../components/Button';
 import {SkillCard} from '../components/SkillCard';
 
+interface SkillData {
+  id: string;
+  name: string;
+}
+
 export const Home = () => {
   const [newSkill, setNewSkill] = useState('');
-  const [mySkills, setMySkills] = useState(['Queijo']);
+  const [mySkills, setMySkills] = useState<SkillData[]>([]);
 
   const addSkillHandle = () => {
-    setMySkills(oldState => [...oldState, newSkill]);
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
+    setMySkills(oldState => [...oldState, data]);
   };
 
   useEffect(() => {
@@ -43,8 +52,8 @@ export const Home = () => {
 
       <FlatList
         data={mySkills}
-        keyExtractor={item => item}
-        renderItem={({item}) => <SkillCard skill={item} />}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <SkillCard skill={item.name} />}
       />
     </SafeAreaView>
   );
@@ -60,7 +69,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: 24,
-    fintWeight: 'bold',
+    fontWeight: 'bold',
   },
   input: {
     backgroundColor: '#1f1e25',
