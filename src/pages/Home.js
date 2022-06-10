@@ -1,29 +1,32 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
-  View,
   Text,
   StyleSheet,
   SafeAreaView,
   TextInput,
   Platform,
-  TouchableOpacity,
+  FlatList,
+  StatusBar,
 } from 'react-native';
 import {MyButton} from '../components/Button';
+import {SkillCard} from '../components/SkillCard';
 
 export const Home = () => {
   const [newSkill, setNewSkill] = useState('');
-
-  const [mySkills, setMySkills] = useState(['queijo']);
+  const [mySkills, setMySkills] = useState(['Queijo']);
 
   const addSkillHandle = () => {
-    const skill = newSkill;
-
-    setMySkills([...mySkills, skill]);
-    setNewSkill('');
+    setMySkills(oldState => [...oldState, newSkill]);
   };
+
+  useEffect(() => {
+    setNewSkill('');
+  }, [mySkills]);
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
+
       <Text style={styles.title}>Welcome</Text>
 
       <TextInput
@@ -31,25 +34,18 @@ export const Home = () => {
         placeholder="New Skill"
         placeholderTextColor="#555"
         onChangeText={setNewSkill}
+        value={newSkill}
       />
 
-      <MyButton name="Add new" addSkillHandle={addSkillHandle} />
-
-      {/* <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.7}
-        onPress={addSkillHandle}>
-        <Text style={styles.buttonText}>Add new</Text>
-      </TouchableOpacity> */}
+      <MyButton name="Add new" onPress={addSkillHandle} />
 
       <Text style={[styles.title, {marginTop: 50}]}>My skills</Text>
-      {mySkills.map(skill => {
-        return (
-          <Text key={skill} style={[styles.title, {marginTop: 50}]}>
-            {skill}
-          </Text>
-        );
-      })}
+
+      <FlatList
+        data={mySkills}
+        keyExtractor={item => item}
+        renderItem={({item}) => <SkillCard skill={item} />}
+      />
     </SafeAreaView>
   );
 };
